@@ -1,0 +1,16 @@
+<div class='js-country-card country-card'>
+  <h2 class='country-card__title'>{{name}}</h2>
+  <img class='country-card__img' src='{{flag}}' alt='flag of {{name}}' width='260' />
+  <div class='country-card__descr-wrapper'>
+    <p class='country-card__item'>Capital:<span class='country-card__value'>{{capital}}</span></p>
+    <p class='country-card__item'>Population:<span
+        class='country-card__value'
+      >{{population}}</span></p>
+    <p class='country-card__item'>Languages:</p>
+    <ul class='country-card__list list'>
+      {{#each languages}}
+        <li class='country-card__list-item'>{{this.name}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

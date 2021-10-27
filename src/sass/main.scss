@@ -1,7 +1,129 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
+body {
+  font-family: Roboto;
+  color: #000000;
+}
 
-// Стили для файла с примером HTML-фрагмента
-@import './example';
+p,
+ul,
+li,
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.list {
+  list-style: none;
+}
+
+.input-container {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.input-title {
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.country-input {
+  width: 250px;
+  height: 40px;
+  border: 1px solid #6f6f6f;
+  border-radius: 5px;
+  margin: 0 auto;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.country-input:focus {
+  outline-color: #6f6f6f;
+}
+
+.country-input::placeholder {
+  color: #9f9f9f;
+}
+
+.country-card {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  max-width: 300px;
+  border: 2px solid #6f6f6f;
+  border-radius: 10px;
+}
+
+// .country-card__descr-wrapper {
+//   padding: 0 20px;
+// }
+
+.country-card__title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.country-card__img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.country-card__item {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.country-card__value {
+  margin-left: 5px;
+  font-weight: 400;
+}
+
+.country-card__list,
+.country-list {
+  padding-left: 20px;
+}
+
+.country-list {
+  padding: 20px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  max-width: 300px;
+  border: 2px solid #6f6f6f;
+  border-radius: 10px;
+}
+
+.country-list__item::after {
+  content: '. . .';
+}
+
+.country-list__item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.country-list__link {
+  display: block;
+  font-weight: 500;
+  color: #6f6f6f;
+  transition: color 250ms linear;
+}
+
+.country-list__link:hover,
+.country-list__link:focus {
+  color: #2fa03e;
+}
+
+.country-list__link:focus {
+  outline: none;
+}

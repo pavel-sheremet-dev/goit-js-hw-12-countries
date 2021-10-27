@@ -1,0 +1,9 @@
+<ul class='js-country-list country-list list'>
+  {{#each this}}
+    <li class='country-list__item list' data-alpha='{{alpha3Code}}'><a
+        href='#'
+        class='js-link country-list__link link'
+        data-alpha='{{alpha3Code}}'
+      >{{this.name}};</a></li>
+  {{/each}}
+</ul>
