@@ -11,23 +11,33 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
     />
   </head>
   <body>
-    <div class="input-container">
-      <p class="input-title">Country info</p>
-      <input
-        class="country-input"
-        type="text"
-        id="country-input"
-        placeholder="Enter search country"
-      />
-    </div>
+    <section class="country">
+      <div class="container country__conrainer">
+        <h1 class="country__title">Search countries</h1>
+        <div class="input-container">
+          <input
+            class="country__input"
+            type="text"
+            id="country-input"
+            placeholder="Enter country name"
+          />
+          <div class="js-spinner spinner-container"></div>
+        </div>
 
-    <div class="js-container result-container"></div>
+        <div class="js-container country__result is-hidden">
+          <!-- <div class="js-country-card country-card"></div>
+          <ul class="js-country-list country-list list"></ul> -->
+        </div>
+      </div>
+    </section>
 
     <script src="./index.js"></script>
   </body>

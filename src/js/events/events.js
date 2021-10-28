@@ -5,18 +5,23 @@ import {
   clearContainer,
   clearInput,
 } from '../services/pageServices';
+import getRefs from '../data/references';
+import spinner from '../vendors/spinner';
 
-import { showError, ALERTS } from '../services/alerts';
+const refs = getRefs();
+
+import { showError, ALERTS } from '../vendors/alerts';
 
 const inputNormalize = value => value.toLowerCase().split(' ').join('');
 
-const onInput = e => {
+const onInputFetch = e => {
   const countryName = e.target.value;
 
   if (!countryName) {
-    clearContainer();
     return;
   }
+
+  spinner.spin(refs.spinner);
 
   const normalizedName = inputNormalize(countryName);
 
@@ -27,7 +32,14 @@ const onInput = e => {
       }
       return renderCounries(data);
     })
-    .catch(showError);
+    .catch(err => {
+      spinner.stop();
+      showError(err);
+    });
+};
+
+const onInputClient = e => {
+  clearContainer();
 };
 
 const onCountryClick = e => {
@@ -40,4 +52,4 @@ const onCountryClick = e => {
   }
 };
 
-export { onInput, onCountryClick };
+export { onInputFetch, onInputClient, onCountryClick };

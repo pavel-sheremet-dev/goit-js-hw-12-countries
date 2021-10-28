@@ -2,6 +2,7 @@ const BASE_API_URL = 'https://restcountries.com/v2/name/';
 const BASE_API_URL_ALPHA = 'https://restcountries.com/v2/alpha/';
 
 const fetchCountries = country => {
+  console.log('привет');
   const urlParams = new URLSearchParams({
     fields: 'name,flag,capital,population,languages,alpha3Code',
   });
