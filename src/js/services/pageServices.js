@@ -32,7 +32,7 @@ const clearContainer = () => {
   showContainer();
   setTimeout(() => {
     refs.container.innerHTML = '';
-  }, 100);
+  }, 200);
 };
 
 const showCountryCard = data => {
