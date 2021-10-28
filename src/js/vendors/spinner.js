@@ -7,7 +7,7 @@ const opts = {
   radius: 5,
   scale: 1.0,
   corners: 1,
-  color: '#57be65',
+  color: '#d3ebd0',
   fadeColor: 'transparent',
   animation: 'spinner-line-shrink',
   rotate: 0,

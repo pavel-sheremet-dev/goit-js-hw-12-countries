@@ -1,7 +1,8 @@
 import { fetchCountries, fetchCountrybyAlpha } from '../services/fetchCountries';
 import { renderCounries, showCountryCard, clearContainer } from '../services/pageServices';
-import getRefs from '../data/references';
 import spinner from '../vendors/spinner';
+import getRefs from '../data/references';
+import CSS from '../data/css';
 
 const refs = getRefs();
 
@@ -33,9 +34,7 @@ const onInputFetch = e => {
     });
 };
 
-const onInputClient = e => {
-  clearContainer();
-};
+const onInputClient = () => clearContainer();
 
 const onCountryClick = e => {
   e.preventDefault();
@@ -44,16 +43,14 @@ const onCountryClick = e => {
     spinner.spin(refs.spinner);
     clearContainer();
     const countryCode = e.target.dataset.alpha;
+
     fetchCountrybyAlpha(countryCode).then(country => {
-      refs.container.addEventListener(
-        'DOMSubtreeModified',
-        () => {
-          spinner.stop();
-          showCountryCard(country);
-        },
-        { once: true },
-      );
+      setTimeout(() => {
+        spinner.stop();
+        showCountryCard(country);
+      }, CSS.DELAY);
     });
+    e.currentTarget.removeEventListener('click', onCountryClick);
   }
 };
 
