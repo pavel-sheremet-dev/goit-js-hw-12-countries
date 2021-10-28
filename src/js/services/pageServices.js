@@ -18,7 +18,6 @@ const renderCounries = data => {
   if (data.length === 1) {
     const countryData = data[0];
     showCountryCard(countryData);
-    // clearInput();
     return;
   }
 

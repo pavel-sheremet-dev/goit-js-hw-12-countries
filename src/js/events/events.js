@@ -1,10 +1,5 @@
 import { fetchCountries, fetchCountrybyAlpha } from '../services/fetchCountries';
-import {
-  renderCounries,
-  showCountryCard,
-  clearContainer,
-  clearInput,
-} from '../services/pageServices';
+import { renderCounries, showCountryCard, clearContainer } from '../services/pageServices';
 import getRefs from '../data/references';
 import spinner from '../vendors/spinner';
 
@@ -46,9 +41,19 @@ const onCountryClick = e => {
   e.preventDefault();
 
   if (e.target !== e.currentTarget) {
-    // clearInput();
+    spinner.spin(refs.spinner);
+    clearContainer();
     const countryCode = e.target.dataset.alpha;
-    fetchCountrybyAlpha(countryCode).then(showCountryCard);
+    fetchCountrybyAlpha(countryCode).then(country => {
+      refs.container.addEventListener(
+        'DOMSubtreeModified',
+        () => {
+          spinner.stop();
+          showCountryCard(country);
+        },
+        { once: true },
+      );
+    });
   }
 };
 
