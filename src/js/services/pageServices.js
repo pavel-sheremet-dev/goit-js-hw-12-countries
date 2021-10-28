@@ -18,9 +18,10 @@ const renderCounries = data => {
   if (data.length === 1) {
     const countryData = data[0];
     showCountryCard(countryData);
-    clearInput();
+    // clearInput();
     return;
   }
+
   showCountiesList(data);
 
   const listRef = document.querySelector('.js-country-list');
@@ -29,19 +30,20 @@ const renderCounries = data => {
 };
 
 const clearContainer = () => {
-  showContainer();
+  hideContainer();
   setTimeout(() => {
     refs.container.innerHTML = '';
   }, 200);
 };
 
 const showCountryCard = data => {
+  clearInput();
   refs.container.innerHTML = makeCountryCard(data);
   refs.container.querySelector('.js-img').addEventListener(
     'load',
     () => {
       spinner.stop();
-      hideContainer();
+      showContainer();
     },
     { once: true },
   );
@@ -52,7 +54,7 @@ const showCountiesList = data => {
     'DOMSubtreeModified',
     () => {
       spinner.stop();
-      hideContainer();
+      showContainer();
     },
     { once: true },
   );
@@ -64,11 +66,11 @@ const clearInput = () => {
   refs.input.focus();
 };
 
-const hideContainer = () => {
+const showContainer = () => {
   refs.container.classList.remove('is-hidden');
 };
 
-const showContainer = () => {
+const hideContainer = () => {
   refs.container.classList.add('is-hidden');
 };
 

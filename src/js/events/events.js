@@ -46,7 +46,7 @@ const onCountryClick = e => {
   e.preventDefault();
 
   if (e.target !== e.currentTarget) {
-    clearInput();
+    // clearInput();
     const countryCode = e.target.dataset.alpha;
     fetchCountrybyAlpha(countryCode).then(showCountryCard);
   }
