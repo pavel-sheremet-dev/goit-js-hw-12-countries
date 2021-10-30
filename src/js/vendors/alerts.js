@@ -5,7 +5,6 @@ import '@pnotify/core/dist/BrightTheme.css';
 const ALERTS = {
   MATCH_RESULTS: 'To many matches found',
   NOT_FOUND: 'This country has not been found. Check country name',
-  PAGE_NOT_FOUND: 'Invalid search query. Check it please',
 };
 
 const showAlert = (message, title) => {

@@ -12,8 +12,8 @@ const fetchCountries = country => {
       return res.json();
     }
     return Promise.reject({
-      message: ALERTS.PAGE_NOT_FOUND,
-      title: `${res.status} ${res.statusText}`,
+      message: res.statusText,
+      title: res.status,
     });
   });
 };
