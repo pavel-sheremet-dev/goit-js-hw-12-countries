@@ -1,8 +1,7 @@
 import makeCountryList from '../../templating/countryList.hbs';
 import makeCountryCard from '../../templating/counryCard.hbs';
-import { onCountryClick } from '../events/events';
+import { onCountryClick, onCardImageLoad } from '../events/events';
 import spinner from '../vendors/spinner';
-import { showAlert, ALERTS } from '../vendors/alerts';
 import getRefs from '../data/references';
 import CSS from '../data/css';
 
@@ -24,37 +23,49 @@ const clearContainer = () => {
   }, CSS.DELAY);
 };
 
-const renderCounries = data => {
-  // if (data.length > 10) {
-  //   clearContainer();
-  //   spinner.stop();
-  //   showAlert(ALERTS.MATCH_RESULTS, `${data.length} reults`);
-  //   return;
-  // }
-
-  if (data.length === 1) {
-    const countryData = data[0];
-    showCountryCard(countryData);
+const renderCountries = countriesList => {
+  if (countriesList.length === 1) {
+    const country = countriesList[0];
+    renderCountry(country);
+    showCountryCard();
     return;
   }
-
-  showCountiesList(data);
+  renderCountriesList(countriesList);
+  showContainer();
 
   const listRef = refs.container.querySelector(CSS.LIST);
-
   listRef.addEventListener('click', onCountryClick);
 };
 
-const showCountryCard = data => {
-  clearInput();
-  refs.container.innerHTML = makeCountryCard(data);
+const renderCountry = country => {
+  refs.container.innerHTML = makeCountryCard(country);
+};
+
+const renderCountriesList = countriesList => {
+  refs.container.innerHTML = makeCountryList(countriesList);
+};
+
+const showCountryCard = () => {
   const imgRef = refs.container.querySelector(CSS.IMG);
-  imgRef.addEventListener('load', showContainer, { once: true });
+  imgRef.addEventListener('load', onCardImageLoad, { once: true });
 };
 
-const showCountiesList = data => {
-  showContainer();
-  refs.container.innerHTML = makeCountryList(data);
+const showClearBtn = () => {
+  refs.clearBtn.classList.add(CSS.BTN_SHOW);
 };
 
-export { renderCounries, showCountryCard, clearContainer, showCountiesList, clearInput };
+const hideClearBtn = () => {
+  refs.clearBtn.classList.remove(CSS.BTN_SHOW);
+};
+
+export {
+  renderCountries,
+  onCardImageLoad,
+  clearContainer,
+  clearInput,
+  showClearBtn,
+  hideClearBtn,
+  renderCountry,
+  showContainer,
+  showCountryCard,
+};

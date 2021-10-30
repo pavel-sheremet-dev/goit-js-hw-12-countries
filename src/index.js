@@ -1,5 +1,4 @@
 import './sass/main.scss';
-import { showError } from './js/vendors/alerts';
 
 import debounce from 'lodash.debounce';
 import getRefs from './js/data/references';

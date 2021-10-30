@@ -1,5 +1,14 @@
 import { fetchCountries, fetchCountrybyAlpha } from '../services/fetchCountries';
-import { renderCounries, showCountryCard, clearContainer } from '../services/pageServices';
+import {
+  renderCountries,
+  renderCountry,
+  showCountryCard,
+  showContainer,
+  clearContainer,
+  clearInput,
+  showClearBtn,
+  hideClearBtn,
+} from '../services/pageServices';
 import spinner from '../vendors/spinner';
 import getRefs from '../data/references';
 import CSS from '../data/css';
@@ -32,7 +41,7 @@ const onInputFetch = e => {
         showAlert(ALERTS.MATCH_RESULTS, `${data.length} reults`);
         return;
       }
-      return renderCounries(data);
+      renderCountries(data);
     })
     .catch(err => {
       spinner.stop();
@@ -40,7 +49,12 @@ const onInputFetch = e => {
     });
 };
 
-const onInputClient = () => clearContainer();
+const onInputClient = () => {
+  if (!refs.container.classList.contains(CSS.IS_HIDDEN)) {
+    hideClearBtn();
+    setTimeout(clearContainer, CSS.DELAY);
+  }
+};
 
 const onCountryClick = e => {
   e.preventDefault();
@@ -53,11 +67,27 @@ const onCountryClick = e => {
     fetchCountrybyAlpha(countryCode).then(country => {
       setTimeout(() => {
         spinner.stop();
-        showCountryCard(country);
+
+        renderCountry(country);
+        showCountryCard();
       }, CSS.DELAY);
     });
     e.currentTarget.removeEventListener('click', onCountryClick);
   }
 };
 
-export { onInputFetch, onInputClient, onCountryClick };
+const onBtnClick = e => {
+  refs.input.focus();
+  hideClearBtn();
+  setTimeout(clearContainer, CSS.DELAY);
+  clearInput();
+  e.target.removeEventListener('click', onBtnClick);
+};
+
+const onCardImageLoad = () => {
+  setTimeout(showClearBtn, CSS.DELAY);
+  showContainer();
+  refs.clearBtn.addEventListener('click', onBtnClick);
+};
+
+export { onInputFetch, onInputClient, onCountryClick, onBtnClick, onCardImageLoad };
