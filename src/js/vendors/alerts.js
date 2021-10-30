@@ -4,7 +4,8 @@ import '@pnotify/core/dist/BrightTheme.css';
 
 const ALERTS = {
   MATCH_RESULTS: 'To many matches found',
-  NOT_FOUND: 'has not been found. Check country name',
+  NOT_FOUND: 'This country has not been found. Check country name',
+  PAGE_NOT_FOUND: 'Invalid search query. Check it please',
 };
 
 const showAlert = (message, title) => {
@@ -27,8 +28,8 @@ const showAlert = (message, title) => {
   });
 };
 
-const showError = ({ countryName, notFound }) => {
-  showAlert(notFound, countryName);
+const showError = ({ title, message }) => {
+  showAlert(message, title);
 };
 
 export { showAlert, showError, ALERTS };

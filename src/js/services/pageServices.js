@@ -25,12 +25,12 @@ const clearContainer = () => {
 };
 
 const renderCounries = data => {
-  if (data.length > 10) {
-    clearContainer();
-    spinner.stop();
-    showAlert(ALERTS.MATCH_RESULTS, `${data.length} reults`);
-    return;
-  }
+  // if (data.length > 10) {
+  //   clearContainer();
+  //   spinner.stop();
+  //   showAlert(ALERTS.MATCH_RESULTS, `${data.length} reults`);
+  //   return;
+  // }
 
   if (data.length === 1) {
     const countryData = data[0];

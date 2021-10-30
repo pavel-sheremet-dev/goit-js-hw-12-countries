@@ -6,7 +6,7 @@ import CSS from '../data/css';
 
 const refs = getRefs();
 
-import { showError, ALERTS } from '../vendors/alerts';
+import { showAlert, showError, ALERTS } from '../vendors/alerts';
 
 const inputNormalize = value => value.toLowerCase().split(' ').join('');
 
@@ -24,7 +24,13 @@ const onInputFetch = e => {
   fetchCountries(normalizedName)
     .then(data => {
       if (data.status) {
-        return Promise.reject({ countryName, notFound: ALERTS.NOT_FOUND });
+        return Promise.reject({ title: countryName, message: ALERTS.NOT_FOUND });
+      }
+      if (data.length > 10) {
+        clearContainer();
+        spinner.stop();
+        showAlert(ALERTS.MATCH_RESULTS, `${data.length} reults`);
+        return;
       }
       return renderCounries(data);
     })
