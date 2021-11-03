@@ -7,21 +7,36 @@ import CSS from '../data/css';
 
 const refs = getRefs();
 
-const clearInput = () => (refs.input.value = '');
+const clearInput = () => {
+  refs.input.value = '';
+};
 
 const showContainer = () => {
   spinner.stop();
   refs.container.classList.remove(CSS.IS_HIDDEN);
 };
 
-const hideContainer = () => refs.container.classList.add(CSS.IS_HIDDEN);
+const hideContainer = () => {
+  refs.container.classList.add(CSS.IS_HIDDEN);
+};
 
 const clearContainer = () => {
   hideContainer();
-  setTimeout(() => {
-    refs.container.innerHTML = '';
-  }, CSS.DELAY);
+  const promise = new Promise(res => {
+    setTimeout(() => {
+      refs.container.innerHTML = '';
+      res();
+    }, CSS.DELAY);
+  });
+  return promise;
 };
+
+// const clearContainer = () => {
+//   hideContainer();
+//   setTimeout(() => {
+//     refs.container.innerHTML = '';
+//   }, CSS.DELAY);
+// };
 
 const renderCountries = countriesList => {
   if (countriesList.length === 1) {

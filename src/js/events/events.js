@@ -59,19 +59,24 @@ const onInputClient = () => {
 const onCountryClick = e => {
   e.preventDefault();
 
-  if (e.target !== e.currentTarget) {
+  if (e.target.tagName === 'A') {
     spinner.spin(refs.spinner);
-    clearContainer();
     const countryCode = e.target.dataset.alpha;
 
-    fetchCountrybyAlpha(countryCode).then(country => {
-      setTimeout(() => {
-        spinner.stop();
-
-        renderCountry(country);
-        showCountryCard();
-      }, CSS.DELAY);
+    Promise.all([fetchCountrybyAlpha(countryCode), clearContainer()]).then(result => {
+      const country = result[0];
+      renderCountry(country);
+      showCountryCard();
     });
+
+    // clearContainer()
+    // fetchCountrybyAlpha(countryCode).then(country => {
+    //   // setTimeout(() => {
+    //   //   renderCountry(country);
+    //   //   showCountryCard();
+    //   // }, CSS.DELAY);
+    // });
+
     e.currentTarget.removeEventListener('click', onCountryClick);
   }
 };

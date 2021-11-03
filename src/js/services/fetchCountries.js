@@ -1,5 +1,3 @@
-import { ALERTS } from '../vendors/alerts';
-
 const BASE_API_URL = 'https://restcountries.com/v2/name/';
 const BASE_API_URL_ALPHA = 'https://restcountries.com/v2/alpha/';
 
